@@ -1,6 +1,7 @@
 package Lisp;
 
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class lispEvaluator {
@@ -49,9 +50,19 @@ public class lispEvaluator {
                    index++;
                }
                else {
-                   while (!resultStack.empty()) {
-                       token = new lispToken((temp));
-
+                   LinkedList<Double> list = new LinkedList();
+                   token = new lispToken((temp));
+                   if (resultStack.empty()) {
+                       expressionStack.push(token.getIdentity());
+                       index++;
+                   }
+                   else {
+                       while (!resultStack.empty()) {
+                           list.add(Double.parseDouble(String.valueOf(resultStack.pop())));
+                       }
+                       Double result = token.multipleOperands(list);
+                       expressionStack.push(result);
+                       index++;
                    }
                }
 

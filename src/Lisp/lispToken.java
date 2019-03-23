@@ -1,5 +1,8 @@
 package Lisp;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 /**
  This class represents either an operand or an operator
  for an arithmetic expression in Lisp.
@@ -131,8 +134,39 @@ public class lispToken
         return result;
     }
 
-    private Double multipleOperands(Double[] arr) {
-        return null;
+    public Double multipleOperands(LinkedList<Double> list) {
+
+        Double result = 0.0;
+        Double operatorValue = this.getIdentity();
+
+        switch (operator)
+        {
+            case '+':
+                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
+                result += (operatorValue + iterator.next());
+                }
+                break;
+            case '-':
+                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
+                    result -= (operatorValue - iterator.next());
+                }
+                break;
+            case '*':
+                result = 1.0;
+                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
+
+                    result *= (operatorValue * iterator.next());
+                }
+                break;
+            case '/':
+                result = 1.0;
+                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
+
+                    result /= (operatorValue / iterator.next());
+                }
+                break;
+        } // end switch
+        return result;
     }
 
     /** Gets the value of this operand.
