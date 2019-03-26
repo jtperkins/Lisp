@@ -15,7 +15,7 @@ public class driver {
         while (true) {
             System.out.println("Enter a lisp arithmetic expression: ");
             input = scan.nextLine();
-            eval.evaluateString(input);
+            System.out.println(eval.evaluateString(input));
             }
     }
 }

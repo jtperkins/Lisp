@@ -142,28 +142,36 @@ public class lispToken
         switch (operator)
         {
             case '+':
-                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
-                result += (operatorValue + iterator.next());
+                result = list.getFirst();
+                for (int i = 1; i < list.size(); i++ ) {
+                    result += list.get(i);
                 }
+                /*for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
+                result += (operatorValue + iterator.next());
+                }*/
                 break;
             case '-':
-                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
-                    result -= (operatorValue - iterator.next());
+                result = list.getFirst();
+                for (int i = 1; i < list.size(); i++ ) {
+                    result -= list.get(i);
                 }
                 break;
             case '*':
-                result = 1.0;
-                for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
-
-                    result *= (operatorValue * iterator.next());
+                result = list.getFirst();
+                for (int i = 1; i < list.size(); i++ ) {
+                    result *= list.get(i);
                 }
                 break;
             case '/':
-                result = 1.0;
+                result = list.getFirst();
+                for (int i = 1; i < list.size(); i++ ) {
+                    result /= list.get(i);
+                }
+                /*result = 1.0;
                 for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {
 
-                    result /= (operatorValue / iterator.next());
-                }
+                    result /= iterator.next();
+                }*/
                 break;
         } // end switch
         return result;
