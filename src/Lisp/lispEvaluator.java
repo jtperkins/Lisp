@@ -15,7 +15,7 @@ public class lispEvaluator {
         resultStack = new Stack();
     }
 
-    public Double evaluateString(String expression) {
+    public String evaluateString(String expression) throws Exception {
         int count = expression.length();
         int index = 0;
         int lCount = 0;
@@ -23,6 +23,9 @@ public class lispEvaluator {
         Character temp;
         Character tempOperator;
         Double tempDouble;
+
+        if (!isValid(expression))
+            throw new Exception();
 
         while(index < count) {
            temp = expression.charAt(index);
@@ -96,8 +99,26 @@ public class lispEvaluator {
 
 
         }
-        return (Double) expressionStack.pop();
+
+        return String.valueOf(expressionStack.pop());
     }
 
+    private boolean isValid(String expression) {
+        int lCount = 0;
+        int rCount = 0;
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '(') {
+                if (expression.charAt(i + 1) == '+' || expression.charAt(i + 1) == '-' || expression.charAt(i + 1) == '/' || expression.charAt(i + 1) == '*')
+                    lCount++;
+            }
+
+            if (expression.charAt(i) == ')')
+                rCount++;
+        }
+        if (lCount == rCount)
+            return true;
+        else
+            return false;
+    }
 
 }
