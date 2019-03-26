@@ -158,18 +158,18 @@ public class lispToken
                 break;
             case '*':
                 result = list.getFirst();
-                if (result < 0) {
-                    if ((list.size() - 1) / ((list.size() - 1) / 2) == 2) {
-                        for (int i = 1; i < list.size(); i++ ) {
-                            result *= list.get(i);
-                        }
-                        return Math.abs(result);
-                    }
 
-                }
                 for (int i = 1; i < list.size(); i++ ) {
-                    result *= list.get(i);
+                    if (list.get(i) % 2 == 0)
+                        result = Math.abs(result) * Math.abs(list.get(i));
+                    else
+                        result *= list.get(i);
+                    //System.out.println(result);
                 }
+
+               /* for (int i = 1; i < list.size(); i++ ) {
+                    result *= list.get(i);
+                }*/
                 break;
             case '/':
                 result = list.getFirst();

@@ -35,9 +35,41 @@ public class lispEvaluator {
                index++;
            }
 
-           if (Character.isDigit(temp)) {
-               expressionStack.push(temp);
+           if (temp.equals('-')) {
+               StringBuilder builder = new StringBuilder();
+               builder.append(temp);
+               builder.append(expression.charAt(++index));
+               //System.out.println(builder);
+               expressionStack.push(Double.parseDouble(builder.toString()));
                index++;
+           }
+
+           if (Character.isDigit(temp)) {
+               if (Character.isDigit(expression.charAt(index + 1))) {
+                   if (Character.isDigit(expression.charAt(index + 2))) {
+                       StringBuilder builder = new StringBuilder();
+                       builder.append(temp);
+                       builder.append(expression.charAt(++index));
+                       builder.append(expression.charAt(++index));
+                       //System.out.println(builder);
+                       expressionStack.push(Double.parseDouble(builder.toString()));
+                       index++;
+                   }
+                   else {
+                       StringBuilder builder = new StringBuilder();
+                       builder.append(temp);
+                       builder.append(expression.charAt(++index));
+                       //System.out.println(builder);
+                       expressionStack.push(Double.parseDouble(builder.toString()));
+                       index++;
+                   }
+
+               }
+               else {
+                   expressionStack.push(temp);
+                   index++;
+               }
+
            }
 
            if (temp.equals(' '))
