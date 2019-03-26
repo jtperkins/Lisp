@@ -12,7 +12,7 @@ public class driver {
         Scanner scan = new Scanner(System.in);
         lispEvaluator eval = new lispEvaluator();
 
-        while (true) {
+
             System.out.println("Enter a lisp arithmetic expression: ");
             input = scan.nextLine();
             try {
@@ -20,6 +20,21 @@ public class driver {
             } catch (Exception e){
                 System.out.println("Invalid lisp expression");
             }
+            while (true) {
+                System.out.println("Do you want to enter another expression? (y/n): ");
+                input = scan.nextLine();
+                //System.out.println(input);
+                if (input.equalsIgnoreCase("n")) {
+                    System.out.println("Thank you for evaluating lisp expressions.");
+                    break;
+                }
+                System.out.println("Enter a lisp arithmetic expression: ");
+                input = scan.nextLine();
+                try {
+                    System.out.println(eval.evaluateString(input));
+                } catch (Exception e){
+                    System.out.println("Result: Invalid expression");
+                }
             }
     }
 }

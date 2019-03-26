@@ -18,8 +18,6 @@ public class lispEvaluator {
     public String evaluateString(String expression) throws Exception {
         int count = expression.length();
         int index = 0;
-        int lCount = 0;
-        int rCount = 0;
         Character temp;
         Character tempOperator;
         Double tempDouble;
@@ -31,7 +29,6 @@ public class lispEvaluator {
            temp = expression.charAt(index);
            if (temp.equals('(')) {
                expressionStack.push(expression.charAt(++index));
-               lCount++;
                index++;
            }
 
@@ -57,7 +54,6 @@ public class lispEvaluator {
            if (temp.equals(' '))
                 index++;
            if (temp.equals(')')) {
-               rCount++;
 
                while (true) {
                    // System.out.println(expressionStack.peek().getClass().getName());
@@ -114,7 +110,7 @@ public class lispEvaluator {
 
         }
 
-        return String.valueOf(expressionStack.pop());
+        return "Result: " + expressionStack.pop();
     }
 
     private boolean isValid(String expression) {
