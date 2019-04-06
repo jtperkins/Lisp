@@ -174,7 +174,11 @@ public class lispToken
             case '/':
                 result = list.getFirst();
                 for (int i = 1; i < list.size(); i++ ) {
-                    result /= list.get(i);
+                    if (Double.compare(list.get(i), 0.0) == 1)
+                        result /= list.get(i);
+
+                    else
+                        throw new ArithmeticException();
                 }
                 /*result = 1.0;
                 for (Iterator<Double> iterator = list.iterator(); iterator.hasNext(); ) {

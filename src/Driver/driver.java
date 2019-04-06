@@ -18,10 +18,11 @@ public class driver {
             try {
                 System.out.println(eval.evaluateString(input));
             } catch (Exception e){
-                System.out.println("Invalid lisp expression");
+                System.out.println(e.getMessage());
+                //System.out.println("Result: Invalid expression");
             }
             while (true) {
-                System.out.println("Do you want to enter another expression? (y/n): ");
+                System.out.print("Do you want to enter another expression? (y/n): ");
                 input = scan.nextLine();
                 //System.out.println(input);
                 if (input.equalsIgnoreCase("n")) {
@@ -33,7 +34,8 @@ public class driver {
                 try {
                     System.out.println(eval.evaluateString(input));
                 } catch (Exception e){
-                    System.out.println("Result: Invalid expression");
+                    System.out.println(e.getMessage());
+                    //System.out.println("Result: Invalid expression");
                 }
             }
     }

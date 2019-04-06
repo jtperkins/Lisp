@@ -23,7 +23,7 @@ public class lispEvaluator {
         Double tempDouble;
 
         if (!isValid(expression))
-            throw new Exception();
+            throw new Exception("Result: Invalid expression");
 
         while(index < count) {
            temp = expression.charAt(index);
@@ -98,7 +98,13 @@ public class lispEvaluator {
                        while (!resultStack.empty()) {
                            list.add(Double.parseDouble(String.valueOf(resultStack.pop())));
                        }
-                       Double result = token.multipleOperands(list);
+                       Double result;
+                       try {
+                           result = token.multipleOperands(list);
+                       } catch (ArithmeticException e) {
+                           throw new Exception("Result: Invalid expression - Division by zero");
+                       }
+
                        //String format = Double.toString(result);
                        expressionStack.push(result);
                        index++;
